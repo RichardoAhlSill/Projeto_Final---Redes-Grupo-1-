@@ -25,6 +25,15 @@ sudo apt-get install bind9 dnsutils bind9-doc
 <p><center> Figura X:  Instalando o Bind9.</center></p>   
 <img src="IMAGES/NS1/1.png" alt="Imagens" title="Figura 1:  Entrando no usuário "redes"." width="500" height="auto" />
 
+#### 3.2) Verificando o status do serviço Bind9
+
+```
+sudo systemctl status bind9 
+```
+
+<p><center> Figura X:  Instalando o Bind9.</center></p>   
+<img src="IMAGES/NS1/2.png" alt="Imagens" title="Figura 1:  Entrando no usuário "redes"." width="500" height="auto" />
+
 ### **4) Instalação e configuração do NS2**
 
 ### **5) Instalação e configuração do Serviço WEB**
