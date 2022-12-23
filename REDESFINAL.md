@@ -67,7 +67,8 @@ sudo cp /etc/bind/db.empty /etc/bind/zones/db.grupo1.turma913.ifalara.local
 
 #### 3.6) Copiando Banco de Dados para o nosso domínio (Zona Reversa)
 
-Fazendo uma cópia do arquivo db.127 para o db.10.9.13.rev, isso na Zona Reversa
+Utilizado para quando não se conhece o endereço IP, mas sabe-se o nome do host.
+Para isso, faz-se uma cópia do arquivo db.127 para o db.10.9.13.rev, isso na Zona Reversa.
 
 ```
 sudo cp /etc/bind/db.127 /etc/bind/zones/db.10.9.13.rev
@@ -75,6 +76,42 @@ sudo cp /etc/bind/db.127 /etc/bind/zones/db.10.9.13.rev
 
 <p><center> Figura X:  Copiando Banco de Dados (Zona Reversa).</center></p>   
 <img src="IMAGES/NS1/6.png" alt="Imagens" title="Copiando Banco de Dados (Zona Reversa)." width="500" height="auto" />
+
+#### 3.7) Editando o Banco de Dados para o nosso domínio (Zona Direta)
+
+```
+sudo nano db.grupo1.turma913.ifalara.local 
+```
+
+Editar colocando as informações contidas na planilha.
+
+
+```
+;
+; BIND data file for internal network
+;
+$ORIGIN grupo1.turma913.ifal.local.
+$TTL	3h
+@	IN	SOA	ns1.grupo1.turma913.ifal.local. root.grupo1.turma913.ifal.local. (
+	  2022122201	; Serial
+			      3h	; Refresh
+			      1h	; Retry
+			      1w	; Expire
+			      1h )	; Negative Cache TTL
+;nameservers
+@	IN	NS	ns1.grupo1.turma913.ifal.local.
+@	IN	NS	ns2.grupo1.turma913.ifal.local.
+;hosts
+ns1.grupo1.turma913.ifal.local.	  IN	A	10.9.13.121
+ns2.grupo1.turma913.ifal.local.	  IN	A	10.9.13.129
+smb.grupo1.turma913.ifal.local.	  IN	A	10.9.13.119
+gw.grupo1.turma913.ifal.local.	  IN 	A	10.9.13.107
+www.grupo1.turma913.ifal.local.	  IN 	A	10.9.13.211
+db.grupo1.turma913.ifal.local.	  IN 	A	10.9.13.212
+```
+
+<p><center> Figura X:  Editando Banco de Dados (Zona Direta).</center></p>   
+<img src="IMAGES/NS1/7.png" alt="Imagens" title="Editando Banco de Dados (Zona Direta)." width="500" height="auto" />
 
 ### **4) Instalação e configuração do NS2**
 
