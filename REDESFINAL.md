@@ -90,28 +90,147 @@ Editar colocando as informações contidas na planilha.
 ;
 ; BIND data file for internal network
 ;
-$ORIGIN grupo1.turma913.ifal.local.
+$ORIGIN grupo1.turma913.ifalara.local.
 $TTL	3h
-@	IN	SOA	ns1.grupo1.turma913.ifal.local. root.grupo1.turma913.ifal.local. (
-	  2022122201	; Serial
+@	IN	SOA	ns1.grupo1.turma913.ifalara.local. root.grupo1.turma913.ifalara.local. (
+	  	      2022122201	; Serial
 			      3h	; Refresh
 			      1h	; Retry
 			      1w	; Expire
 			      1h )	; Negative Cache TTL
 ;nameservers
-@	IN	NS	ns1.grupo1.turma913.ifal.local.
-@	IN	NS	ns2.grupo1.turma913.ifal.local.
+@	IN	NS	ns1.grupo1.turma913.ifalara.local.
+@	IN	NS	ns2.grupo1.turma913.ifalara.local.
 ;hosts
-ns1.grupo1.turma913.ifal.local.	  IN	A	10.9.13.121
-ns2.grupo1.turma913.ifal.local.	  IN	A	10.9.13.129
-smb.grupo1.turma913.ifal.local.	  IN	A	10.9.13.119
-gw.grupo1.turma913.ifal.local.	  IN 	A	10.9.13.107
-www.grupo1.turma913.ifal.local.	  IN 	A	10.9.13.211
-db.grupo1.turma913.ifal.local.	  IN 	A	10.9.13.212
+ns1.grupo1.turma913.ifalara.local.	  IN	A	10.9.13.121
+ns2.grupo1.turma913.ifalara.local.	  IN	A	10.9.13.129
+smb.grupo1.turma913.ifalara.local.	  IN	A	10.9.13.119
+gw.grupo1.turma913.ifalara.local.	  IN 	A	10.9.13.107
+www.grupo1.turma913.ifalara.local.	  IN 	A	10.9.13.211
+db.grupo1.turma913.ifalara.local.	  IN 	A	10.9.13.212
 ```
 
 <p><center> Figura X:  Editando Banco de Dados (Zona Direta).</center></p>   
 <img src="IMAGES/NS1/7.png" alt="Imagens" title="Editando Banco de Dados (Zona Direta)." width="500" height="auto" />
+
+#### 3.8) Editando o Banco de Dados para o nosso domínio (Zona Reversa)
+
+```
+sudo nano db.10.9.13.rev 
+```
+
+Editar colocando as informações contidas na planilha.
+
+
+```
+;
+; BIND reverse data file of reverse zone for local area network 10.9.13.0/24
+;
+$TTL    604800
+@       IN      SOA     grupo1.turma913.ifalara.local. root.grupo1.turma913.ifalara.local. (
+                     2022122200         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+
+; name servers
+@      IN      NS      ns1.grupo1.turma913.ifalara.local.
+@      IN      NS      ns2.grupo1.turma913.ifalara.local.
+
+; PTR Records
+121   IN      PTR     ns1.grupo1.turma913.ifalara.local.              ; 10.9.13.121
+129   IN      PTR     ns2.grupo1.turma913.ifalara.local.              ; 10.9.13.129
+119   IN      PTR     smb.grupo1.turma913.ifalara.local.    	      ; 10.9.13.119
+107   IN      PTR     gw.grupo1.turma913.ifalara.local.               ; 10.9.13.107
+211   IN      PTR     www.grupo1.turma913.ifalara.local.              ; 10.9.13.211
+212   IN      PTR     bd.grupo1.turma913.ifalara.local.               ; 10.9.13.212
+```
+
+<p><center> Figura X:  Editando Banco de Dados (Zona Reversa).</center></p>   
+<img src="IMAGES/NS1/8.png" alt="Imagens" title="Editando Banco de Dados (Zona Reversa)." width="500" height="auto" />
+
+#### 3.9) Ativando os arquivos das zonas
+
+```
+sudo nano /etc/bind/named.conf.local
+```
+
+Inserir as informações de acordo com os arquvios db
+
+
+```
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "grupo1.turma913.ifalara.local" {
+	type master;
+	file "/etc/bind/zones/db.grupo1.turma913.ifalara.local";
+	allow-transfer{ 10.9.13.11; };  
+	allow-query{any;};
+};
+
+zone "13.9.10.in-addr.arpa" IN {
+	type master;
+	file "/etc/bind/zones/db.10.9.13.rev";
+	allow-transfer{ 10.9.13.11; };
+};
+```
+
+<p><center> Figura X:  Ativando os arquivos das zonas.</center></p>   
+<img src="IMAGES/NS1/9.png" alt="Imagens" title="Ativando os arquivos das zonas." width="500" height="auto" />
+
+#### 3.10) Checando a sintaxe do arquivo de ativação
+
+```
+sudo named-checkconf
+```
+
+<p><center> Figura X:  Checando a sintaxe do arquivo de ativação. </center></p>   
+<img src="IMAGES/NS1/10.png" alt="Imagens" title="Checando a sintaxe do arquivo de ativação." width="500" height="auto" />
+
+#### 3.11) Checando a sintaxe dos arquivo de dados
+
+Antes deve-se entrar no diretório das zonas
+
+```
+cd /etc/bind/zones
+```
+Logo após digitar o comando:
+
+```
+sudo named-checkzone grupo1.turma913.ifalara.local db.grupo1.turma913.ifalara.local
+```
+
+Caso o resultado retornado seja: 
+
+```
+zone labredes.ifalarapiraca.local/IN: loaded serial 1
+OK
+```
+
+Esta tudo funcionando perfeitamente, o mesmo vale para o arquivo seguinte.
+
+```
+sudo named-checkzone 13.9.10.in-addr.arpa db.10.9.13.rev
+```
+Retorno:
+
+```
+zone 14.9.10.in-addr.arpa/IN: loaded serial 1
+OK
+```
+
+<p><center> Figura X:  Checando a sintaxe dos arquivo de dados 1. </center></p>   
+<img src="IMAGES/NS1/11.png" alt="Imagens" title="Checando a sintaxe dos arquivo de dados 1." width="500" height="auto" />
+
+<p><center> Figura X:  Checando a sintaxe dos arquivo de dados 2. </center></p>   
+<img src="IMAGES/NS1/12.png" alt="Imagens" title="Checando a sintaxe dos arquivo de dados 2." width="500" height="auto" />
 
 ### **4) Instalação e configuração do NS2**
 
