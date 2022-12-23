@@ -14,6 +14,8 @@ Aluno: Daniel Berg Silva Souza | Julio Cesár dos Santos Oliveira | Kelvin Holan
 
 ### **3) Instalação e configuração do NS1**
 
+* O Bind9 ou Berkeley Internet Name Domain é um servidor utilizado para o protocólo DNS, na qual tem a serventia de garantir uma maior agilidade na navegação visto que permite que o usuário apenas lembre do hostname de um site ao invés de seu endereço IP, portanto é o Bind9 que irá permitir o uso deste protocolo no Ubuntu.
+
 ### **4) Instalação e configuração do NS2**
 
 ### **5) Instalação e configuração do Serviço WEB**
