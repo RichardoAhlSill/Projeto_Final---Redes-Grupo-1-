@@ -108,6 +108,16 @@ sudo chgrp sambashare /samba/public
 
 #### 2.5) Cliente de compartilhamento
 
+* Para o último passo basta em uma máquina digite no Winndows Explorer o endereço IP do servidor samba da seguinte forma:
+**\\ip_do_maquina**. Exemplo: \\10.9.13.119
+
+<img src="IMAGES-SAMBA/samba_directories.png" alt="Imagens" title="Figura 2.7:  conectando ao servidor." width="700" height="auto" />
+<img src="IMAGES-SAMBA/samba_connecting.png" alt="Imagens" title="Figura 2.8:  conectando ao servidor." width="700" height="auto" />
+
+* Vídeo realizando a conexão
+
+<img src="IMAGES-SAMBA/samba_connection.gif" alt="Imagens" title="Figura 2.9:  conectando ao servidor." width="700" height="auto" />
+
 ### **3) Instalação e configuração do NS1 (DNS MASTER)**
 
 O Bind9 ou Berkeley Internet Name Domain é um servidor utilizado para o protocólo DNS, na qual tem a serventia de garantir uma maior agilidade na navegação visto que permite que o usuário apenas lembre do hostname de um site ao invés de seu endereço IP, portanto é o Bind9 que irá permitir o uso deste protocolo no Ubuntu.
