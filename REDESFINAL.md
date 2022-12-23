@@ -54,16 +54,27 @@ sudo mkdir /etc/bind/zones
 <p><center> Figura X:  Criando um diretório para zonas.</center></p>   
 <img src="IMAGES/NS1/4.png" alt="Imagens" title="Criando um diretório para zonas." width="500" height="auto" />
 
-#### 3.5) Copiando Banco de Dados para o nosso domínio 
+#### 3.5) Copiando Banco de Dados para o nosso domínio (Zona Direta) 
 
-Fazendo uma cópia do arquivo db.empty para o db.grupo1.turma913.ifalara.local
+Fazendo uma cópia do arquivo db.empty para o db.grupo1.turma913.ifalara.local, isso na Zona Direta
 
 ```
 sudo cp /etc/bind/db.empty /etc/bind/zones/db.grupo1.turma913.ifalara.local
 ```
 
-<p><center> Figura X:  Copiando Banco de Dados.</center></p>   
-<img src="IMAGES/NS1/4.png" alt="Imagens" title="Copiando Banco de Dados." width="500" height="auto" />
+<p><center> Figura X:  Copiando Banco de Dados (Zona Direta).</center></p>   
+<img src="IMAGES/NS1/5.png" alt="Imagens" title="Copiando Banco de Dados (Zona Direta)" width="500" height="auto" />
+
+#### 3.6) Copiando Banco de Dados para o nosso domínio (Zona Reversa)
+
+Fazendo uma cópia do arquivo db.127 para o db.10.9.13.rev, isso na Zona Reversa
+
+```
+sudo cp /etc/bind/db.127 /etc/bind/zones/db.10.9.13.rev
+```
+
+<p><center> Figura X:  Copiando Banco de Dados (Zona Reversa).</center></p>   
+<img src="IMAGES/NS1/6.png" alt="Imagens" title="Copiando Banco de Dados (Zona Reversa)." width="500" height="auto" />
 
 ### **4) Instalação e configuração do NS2**
 
