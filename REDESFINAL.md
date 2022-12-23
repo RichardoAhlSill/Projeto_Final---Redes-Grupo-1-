@@ -10,6 +10,9 @@ Aluno: Daniel Berg Silva Souza | Julio Cesár dos Santos Oliveira | Kelvin Holan
 
 ### **1) Instalação e configuração do GW**
 
+
+
+
 ### **2) Instalação e configuração do Samba**
 
 ### **3) Instalação e configuração do NS1 (DNS MASTER)**
