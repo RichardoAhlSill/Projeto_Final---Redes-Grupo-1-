@@ -254,7 +254,7 @@ OPTIONS="-4 -u bind"
 #### 3.13) Restartando ou Iniciando o Bind9
 
 Utilizando o comando ```sudo systemctl restart bind9``` para restartar.
-E ```sudo systemctl enable bind9``` caso seja necessárop
+E ```sudo systemctl enable bind9``` caso seja necessáro.
 
 
 <p><center> Figura X:  Restartando ou Iniciando o Bind9.</center></p>   
@@ -269,7 +269,7 @@ sudo vi /etc/netplan/00-installer-config.yaml
 ```
 
 Basta adicionar algumas informações para a configuração dos clientes.
-Entre elas, alterar o
+Entre elas, alterar o os endereços ns1 e ns2 e o domínio para aqueles definidos na planilha.
 
 ```
 # This is the network config written by 'subiquity'
@@ -282,9 +282,9 @@ network:
       gateway4: 10.9.13.1 
       nameservers:
          addresses:
-           - 10.9.13.121 
-           - 10.9.13.129
-         search: [grupo1.turma913.ifalara.local]                                                                                                                                 
+           - 10.9.13.121 #ns1
+           - 10.9.13.129 #ns2
+         search: [grupo1.turma913.ifalara.local] #domínio                                                                                                                                
     ens192:
       dhcp4: false
       addresses: [192.168.13.11/28]
