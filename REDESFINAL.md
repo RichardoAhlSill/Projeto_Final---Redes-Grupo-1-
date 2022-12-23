@@ -328,6 +328,28 @@ No qual deve retornar o resultado da pesquisa na linha ```ANSWER SECTION```, com
 <p><center> Figura X:  Testando o servidor na máquina ns1.</center></p>   
 <img src="IMAGES/NS1/17.png" alt="Imagens" title="Testando o servidor na máquina ns1." width="1000" height="auto" />
 
+E por fim testar o serviço DNS Reverso.
+Primeiramente na máquina com ns1, digitando o comando de acordo com o seu IP da planilha.
+
+```
+dig -x 10.9.13.121
+```
+
+Retornando este resultado da figura abaixo.
+
+<p><center> Figura X:  Testando o DNS Reverso na máquina ns1.</center></p>   
+<img src="IMAGES/NS1/18.png" alt="Imagens" title="Testando o DNS Reverso na máquina ns1." width="1000" height="auto" />
+
+E após, fazer o mesmo para a máquina ns2.
+
+```
+dig -x 10.9.13.129
+```
+Como mostra na figura abaixo.
+
+<p><center> Figura X:  Testando o DNS Reverso na máquina ns2.</center></p>   
+<img src="IMAGES/NS1/19.png" alt="Imagens" title="Testando o DNS Reverso na máquina ns2." width="1000" height="auto" />
+
 
 
 ### **4) Instalação e configuração do NS2**
