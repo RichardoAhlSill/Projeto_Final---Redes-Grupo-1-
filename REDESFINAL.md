@@ -23,7 +23,7 @@ sudo apt-get install bind9 dnsutils bind9-doc
 ```
 
 <p><center> Figura X:  Instalando o Bind9.</center></p>   
-<img src="IMAGES/NS1/1.png" alt="Imagens" title="Figura 1:  Entrando no usuário "redes"." width="500" height="auto" />
+<img src="IMAGES/NS1/1.png" alt="Imagens" title="Instalando o Bind9." width="500" height="auto" />
 
 #### 3.2) Verificando o status do serviço Bind9
 
@@ -32,7 +32,7 @@ sudo systemctl status bind9
 ```
 
 <p><center> Figura X:  Verificando o status do serviço.</center></p>   
-<img src="IMAGES/NS1/2.png" alt="Imagens" title="Figura 1:  Entrando no usuário "redes"." width="500" height="auto" />
+<img src="IMAGES/NS1/2.png" alt="Imagens" title="Verificando o status do serviço." width="500" height="auto" />
 
 #### 3.3) Verificando os diretórios do Bind
 
@@ -41,7 +41,7 @@ ls /etc/bind
 ```
 
 <p><center> Figura X:  Verificando os diretórios do Bind.</center></p>   
-<img src="IMAGES/NS1/3.png" alt="Imagens" title="Figura 1:  Entrando no usuário "redes"." width="500" height="auto" />
+<img src="IMAGES/NS1/3.png" alt="Imagens" title="Verificando os diretórios do Bind." width="500" height="auto" />
 
 #### 3.4) Criando um diretório para as "zones"
 
@@ -52,7 +52,18 @@ sudo mkdir /etc/bind/zones
 ```
 
 <p><center> Figura X:  Criando um diretório para zonas.</center></p>   
-<img src="IMAGES/NS1/4.png" alt="Imagens" title="Figura 1:  Entrando no usuário "redes"." width="500" height="auto" />
+<img src="IMAGES/NS1/4.png" alt="Imagens" title="Criando um diretório para zonas." width="500" height="auto" />
+
+#### 3.5) Copiando Banco de Dados para o nosso domínio 
+
+Fazendo uma cópia do arquivo db.empty para o db.grupo1.turma913.ifalara.local
+
+```
+sudo cp /etc/bind/db.empty /etc/bind/zones/db.grupo1.turma913.ifalara.local
+```
+
+<p><center> Figura X:  Copiando Banco de Dados.</center></p>   
+<img src="IMAGES/NS1/4.png" alt="Imagens" title="Copiando Banco de Dados." width="500" height="auto" />
 
 ### **4) Instalação e configuração do NS2**
 
