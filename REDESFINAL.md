@@ -59,11 +59,54 @@ falta imagens.
 ```
 $ sudo nano /etc/samba/smb.conf
 $ sudo systemctl restart smbd
+$ sudo systemctl restart smbd
 $ cat /etc/samba/smb.conf
 ```
 Linha de interfaces alterada para "10.9.13.1/24 ens160 ens192 enp0s3"
 
 <img src="IMAGES-SAMBA/samba_config_part1.png" alt="Imagens" title="Figura 2.4:  Configuração Samba." width="700" height="auto" />
+
+* Logo em seguida deve-se criar um usuário do S.O para utilizar o compartilhamento Samba.
+
+```
+* usuário: aluno
+* senha: alunoifal
+```
+```
+$ sudo adduser aluno
+```
+* Vinculando o usuário do S.O ao Serviço Samba para acessar o compartilhamento de arquivo. Neste caso repetiremos a senha do usuário aluno.
+
+```
+$ sudo smbpasswd -a aluno
+New SMB password:
+Retype new SMB password:
+Added user aluno.
+$ sudo usermod -aG sambashare aluno
+```
+<img src="IMAGES-SAMBA/smbpasswd.png" alt="Imagens" title="Figura 2.5:  Vinculando o usuário do S.O." width="700" height="auto" />
+
+* Agora que o Samba já encontra-se instalado basta criar um diretório para que possamos compartilhá-lo em rede.
+
+
+```
+$ mkdir /home/<username>/sambashare/
+$ sudo mkdir -p /samba/public
+```
+<img src="IMAGES-SAMBA/create_file_at_samba_public_directory.png" alt="Imagens" title="Figura 2.6:  diretório de compartilhamento do Samba." width="700" height="auto" />
+
+* Em seguida devemos configurar as permissões para que qualquer um possa acessar o compartilhamento público.
+
+```
+sudo chown -R nobody:nogroup /samba/public
+sudo chmod -R 0775 /samba/public
+sudo chgrp sambashare /samba/public
+
+```
+
+<img src="IMAGES-SAMBA/samba_permissions.png" alt="Imagens" title="Figura 2.6:  configurando permissões." width="700" height="auto" />
+
+#### 2.5) Cliente de compartilhamento
 
 ### **3) Instalação e configuração do NS1 (DNS MASTER)**
 
