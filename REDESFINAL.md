@@ -232,6 +232,104 @@ OK
 <p><center> Figura X:  Checando a sintaxe dos arquivo de dados 2. </center></p>   
 <img src="IMAGES/NS1/12.png" alt="Imagens" title="Checando a sintaxe dos arquivo de dados 2." width="1000" height="auto" />
 
+#### 3.12) Configuração para resolver apenas endereço IPv4
+
+```
+sudo nano /etc/default/named
+```
+Editando ou adicionando apenas ```OPTIONS="-4 -u bind"``` a última linha.
+Ficando dessa forma:
+
+```
+# run resolvconf?
+RESOLVCONF=no
+
+# startup options for the server
+OPTIONS="-4 -u bind"
+```
+
+<p><center> Figura X:  Configuração para IPv4.</center></p>   
+<img src="IMAGES/NS1/13.png" alt="Imagens" title="Configuração para IPv4." width="1000" height="auto" />
+
+#### 3.13) Restartando ou Iniciando o Bind9
+
+Utilizando o comando ```sudo systemctl restart bind9``` para restartar.
+E ```sudo systemctl enable bind9``` caso seja necessárop
+
+
+<p><center> Figura X:  Restartando ou Iniciando o Bind9.</center></p>   
+<img src="IMAGES/NS1/14.png" alt="Imagens" title="Restartando ou Iniciando o Bind9" width="1000" height="auto" />
+
+#### 3.14) Configuração para os clientes
+
+Para isso, deve-se editar o arquivo:
+
+```
+sudo vi /etc/netplan/00-installer-config.yaml
+```
+
+Basta adicionar algumas informações para a configuração dos clientes.
+Entre elas, alterar o
+
+```
+# This is the network config written by 'subiquity'
+network:
+  renderer: networkd
+  ethernets:
+    ens160:
+      dhcp4: false
+      addresses: [10.9.13.121/24]
+      gateway4: 10.9.13.1 
+      nameservers:
+         addresses:
+           - 10.9.13.121 
+           - 10.9.13.129
+         search: [grupo1.turma913.ifalara.local]                                                                                                                                 
+    ens192:
+      dhcp4: false
+      addresses: [192.168.13.11/28]
+      #gateway4: 192.168.13.1 
+      #nameservers:
+         #addresses:
+           #- 8.8.8.8 
+           #- 8.8.4.4
+         #search: []
+  version: 2  
+```
+
+
+<p><center> Figura X:  Configuração para os clientes.</center></p>   
+<img src="IMAGES/NS1/15.png" alt="Imagens" title="Configuração para os clientes." width="1000" height="auto" />
+
+#### 3.15) Testes do Servidor
+
+Primeiro iremos testar se os campos DNS servers e DNS Domain estão corretos, ou seja, se estão de acordo com a configuração do cliente que acabamos de editar.
+Para isso, basta utilizar o comando:
+
+```
+resolvectl status ens160
+```
+
+No qual deve retornar os mesmo valores que inserimos no passo anterior, como pode ser observado na figura abaixo.
+
+<p><center> Figura X:  Testando se os campos DNS servers e DNS Domain estão corretos.</center></p>   
+<img src="IMAGES/NS1/16.png" alt="Imagens" title="Testando se os campos DNS servers e DNS Domain estão corretos." width="1000" height="auto" />
+
+
+Após esse teste, iremos testar o serviço para a máquina ns1.
+Para isso, basta utilizar o comando:
+
+```
+dig ns1.grupo1.turma913.ifalara.local
+```
+
+No qual deve retornar o resultado da pesquisa na linha ```ANSWER SECTION```, como pode ser visto na figura abaixo.
+
+<p><center> Figura X:  Testando o servidor na máquina ns1.</center></p>   
+<img src="IMAGES/NS1/17.png" alt="Imagens" title="Testando o servidor na máquina ns1." width="1000" height="auto" />
+
+
+
 ### **4) Instalação e configuração do NS2**
 
 ### **5) Instalação e configuração do Serviço WEB**
