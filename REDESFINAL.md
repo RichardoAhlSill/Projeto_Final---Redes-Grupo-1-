@@ -31,8 +31,28 @@ sudo apt-get install bind9 dnsutils bind9-doc
 sudo systemctl status bind9 
 ```
 
-<p><center> Figura X:  Instalando o Bind9.</center></p>   
+<p><center> Figura X:  Verificando o status do serviço.</center></p>   
 <img src="IMAGES/NS1/2.png" alt="Imagens" title="Figura 1:  Entrando no usuário "redes"." width="500" height="auto" />
+
+#### 3.3) Verificando os diretórios do Bind
+
+```
+ls /etc/bind
+```
+
+<p><center> Figura X:  Verificando os diretórios do Bind.</center></p>   
+<img src="IMAGES/NS1/3.png" alt="Imagens" title="Figura 1:  Entrando no usuário "redes"." width="500" height="auto" />
+
+#### 3.4) Criando um diretório para as "zones"
+
+Criando um diretório para armazenar os arquivos das zonas.
+
+```
+sudo mkdir /etc/bind/zones
+```
+
+<p><center> Figura X:  Criando um diretório para zonas.</center></p>   
+<img src="IMAGES/NS1/4.png" alt="Imagens" title="Figura 1:  Entrando no usuário "redes"." width="500" height="auto" />
 
 ### **4) Instalação e configuração do NS2**
 
