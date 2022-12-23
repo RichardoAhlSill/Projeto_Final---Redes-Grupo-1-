@@ -23,7 +23,7 @@ sudo apt-get install bind9 dnsutils bind9-doc
 ```
 
 <p><center> Figura X:  Instalando o Bind9.</center></p>   
-<img src="IMAGES/NS1/1.png" alt="Imagens" title="Instalando o Bind9." width="500" height="auto" />
+<img src="IMAGES/NS1/1.png" alt="Imagens" title="Instalando o Bind9." width="1000" height="auto" />
 
 #### 3.2) Verificando o status do serviço Bind9
 
@@ -32,7 +32,7 @@ sudo systemctl status bind9
 ```
 
 <p><center> Figura X:  Verificando o status do serviço.</center></p>   
-<img src="IMAGES/NS1/2.png" alt="Imagens" title="Verificando o status do serviço." width="500" height="auto" />
+<img src="IMAGES/NS1/2.png" alt="Imagens" title="Verificando o status do serviço." width="1000" height="auto" />
 
 #### 3.3) Verificando os diretórios do Bind
 
@@ -41,7 +41,7 @@ ls /etc/bind
 ```
 
 <p><center> Figura X:  Verificando os diretórios do Bind.</center></p>   
-<img src="IMAGES/NS1/3.png" alt="Imagens" title="Verificando os diretórios do Bind." width="500" height="auto" />
+<img src="IMAGES/NS1/3.png" alt="Imagens" title="Verificando os diretórios do Bind." width="1000" height="auto" />
 
 #### 3.4) Criando um diretório para as "zones"
 
@@ -52,7 +52,7 @@ sudo mkdir /etc/bind/zones
 ```
 
 <p><center> Figura X:  Criando um diretório para zonas.</center></p>   
-<img src="IMAGES/NS1/4.png" alt="Imagens" title="Criando um diretório para zonas." width="500" height="auto" />
+<img src="IMAGES/NS1/4.png" alt="Imagens" title="Criando um diretório para zonas." width="1000" height="auto" />
 
 #### 3.5) Copiando Banco de Dados para o nosso domínio (Zona Direta) 
 
@@ -63,7 +63,7 @@ sudo cp /etc/bind/db.empty /etc/bind/zones/db.grupo1.turma913.ifalara.local
 ```
 
 <p><center> Figura X:  Copiando Banco de Dados (Zona Direta).</center></p>   
-<img src="IMAGES/NS1/5.png" alt="Imagens" title="Copiando Banco de Dados (Zona Direta)" width="500" height="auto" />
+<img src="IMAGES/NS1/5.png" alt="Imagens" title="Copiando Banco de Dados (Zona Direta)" width="1000" height="auto" />
 
 #### 3.6) Copiando Banco de Dados para o nosso domínio (Zona Reversa)
 
@@ -75,7 +75,7 @@ sudo cp /etc/bind/db.127 /etc/bind/zones/db.10.9.13.rev
 ```
 
 <p><center> Figura X:  Copiando Banco de Dados (Zona Reversa).</center></p>   
-<img src="IMAGES/NS1/6.png" alt="Imagens" title="Copiando Banco de Dados (Zona Reversa)." width="500" height="auto" />
+<img src="IMAGES/NS1/6.png" alt="Imagens" title="Copiando Banco de Dados (Zona Reversa)." width="1000" height="auto" />
 
 #### 3.7) Editando o Banco de Dados para o nosso domínio (Zona Direta)
 
@@ -111,7 +111,7 @@ db.grupo1.turma913.ifalara.local.	  IN 	A	10.9.13.212
 ```
 
 <p><center> Figura X:  Editando Banco de Dados (Zona Direta).</center></p>   
-<img src="IMAGES/NS1/7.png" alt="Imagens" title="Editando Banco de Dados (Zona Direta)." width="500" height="auto" />
+<img src="IMAGES/NS1/7.png" alt="Imagens" title="Editando Banco de Dados (Zona Direta)." width="1000" height="auto" />
 
 #### 3.8) Editando o Banco de Dados para o nosso domínio (Zona Reversa)
 
@@ -148,7 +148,7 @@ $TTL    604800
 ```
 
 <p><center> Figura X:  Editando Banco de Dados (Zona Reversa).</center></p>   
-<img src="IMAGES/NS1/8.png" alt="Imagens" title="Editando Banco de Dados (Zona Reversa)." width="500" height="auto" />
+<img src="IMAGES/NS1/8.png" alt="Imagens" title="Editando Banco de Dados (Zona Reversa)." width="1000" height="auto" />
 
 #### 3.9) Ativando os arquivos das zonas
 
@@ -183,7 +183,7 @@ zone "13.9.10.in-addr.arpa" IN {
 ```
 
 <p><center> Figura X:  Ativando os arquivos das zonas.</center></p>   
-<img src="IMAGES/NS1/9.png" alt="Imagens" title="Ativando os arquivos das zonas." width="500" height="auto" />
+<img src="IMAGES/NS1/9.png" alt="Imagens" title="Ativando os arquivos das zonas." width="1000" height="auto" />
 
 #### 3.10) Checando a sintaxe do arquivo de ativação
 
@@ -192,7 +192,7 @@ sudo named-checkconf
 ```
 
 <p><center> Figura X:  Checando a sintaxe do arquivo de ativação. </center></p>   
-<img src="IMAGES/NS1/10.png" alt="Imagens" title="Checando a sintaxe do arquivo de ativação." width="500" height="auto" />
+<img src="IMAGES/NS1/10.png" alt="Imagens" title="Checando a sintaxe do arquivo de ativação." width="1000" height="auto" />
 
 #### 3.11) Checando a sintaxe dos arquivo de dados
 
@@ -227,10 +227,10 @@ OK
 ```
 
 <p><center> Figura X:  Checando a sintaxe dos arquivo de dados 1. </center></p>   
-<img src="IMAGES/NS1/11.png" alt="Imagens" title="Checando a sintaxe dos arquivo de dados 1." width="500" height="auto" />
+<img src="IMAGES/NS1/11.png" alt="Imagens" title="Checando a sintaxe dos arquivo de dados 1." width="1000" height="auto" />
 
 <p><center> Figura X:  Checando a sintaxe dos arquivo de dados 2. </center></p>   
-<img src="IMAGES/NS1/12.png" alt="Imagens" title="Checando a sintaxe dos arquivo de dados 2." width="500" height="auto" />
+<img src="IMAGES/NS1/12.png" alt="Imagens" title="Checando a sintaxe dos arquivo de dados 2." width="1000" height="auto" />
 
 ### **4) Instalação e configuração do NS2**
 
