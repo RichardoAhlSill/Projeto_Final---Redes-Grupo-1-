@@ -114,7 +114,7 @@ sudo chgrp sambashare /samba/public
 <img src="IMAGES-SAMBA/samba_directories.png" alt="Imagens" title="Figura 2.7:  conectando ao servidor." width="700" height="auto" />
 <img src="IMAGES-SAMBA/samba_connecting.png" alt="Imagens" title="Figura 2.8:  conectando ao servidor." width="700" height="auto" />
 
-* Vídeo realizando a conexão
+* Vídeo realizando a conexão e acessando o arquivo de texto criado anteriormente
 
 <img src="IMAGES-SAMBA/samba_connection.gif" alt="Imagens" title="Figura 2.9:  conectando ao servidor." width="700" height="auto" />
 
