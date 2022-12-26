@@ -43,6 +43,89 @@ $ cat /etc/ufw/sysctl.conf
 ```
 $ ifconfig
 ```
+![ifconfig](https://user-images.githubusercontent.com/103438311/209578719-5c52fc2b-ca85-46dc-9021-631b6b3f742a.png)
+ ```
+ Interface WAN: ens160
+ Interface LAN: ens192
+ Interface LoopBack: lo
+```
+
+#### 1.6) Configurando os IPs, DHCPs e Gateyas das interfaces WAN e LAN
+```
+$ sudo nano /etc/netplan/00-installer-config.yaml
+$ sudo netplan apply
+```
+![netplan_apply](https://user-images.githubusercontent.com/103438311/209579503-21d5cc8b-a245-41f0-a503-98cd68d74e4e.png)
+
+Após editar e aplicar as configurações, pode-se:
+```
+Para visualizar o arquivo: $ cat /etc/netplan/00-installer-config.yaml
+```
+![cat](https://user-images.githubusercontent.com/103438311/209579576-0ba94311-8101-4de1-a98a-cc1ee89e3268.png)
+
+```
+Para visualizar se as configurações foram aplicadas: $ ifconfig
+```
+![new_ifconfig](https://user-images.githubusercontent.com/103438311/209579639-0af99b8b-888c-4b41-a92e-e74b95ccf14c.png)
+
+#### 1.7) Agora, cria-se o arquivo ```rc.local``` no diretório /etc.
+Este arquivo receberá um script responsável pelo redirecionamento de portas entre as interfaces, para
+o recibimento de pacotes.
+```
+$ sudo nano /etc/rc.local
+```
+Em seguida, inseri-se o seguinte script: 
+```
+#!/bin/bash
+
+# /etc/rc.local
+
+# Default policy to drop all incoming packets.
+# Politica padrão para bloquear (drop) todos os pacotes de entrada
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+
+# Accept incoming packets from localhost and the LAN interface.
+# Aceita pacotes de entrada a partir das interfaces localhost e the LAN.
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -i ens192 -j ACCEPT
+
+# Accept incoming packets from the WAN if the router initiated the connection.
+# Aceita pacotes de entrada a partir da WAN se o roteador iniciou a conexao
+iptables -A INPUT -i ens160 -m conntrack \
+--ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# Forward LAN packets to the WAN.
+# Encaminha os pacotes da LAN para a WAN
+iptables -A FORWARD -i ens192 -o ens160 -j ACCEPT
+
+# Forward WAN packets to the LAN if the LAN initiated the connection.
+# Encaminha os pacotes WAN para a LAN se a LAN inicar a conexao.
+iptables -A FORWARD -i ens160 -o ens192 -m conntrack \
+--ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# NAT traffic going out the WAN interface.
+# Trafego NAT sai pela interface WAN
+iptables -t nat -A POSTROUTING -o ens160 -j MASQUERADE
+
+# rc.local needs to exit with 0
+# rc.local precisa sair com 0
+
+exit 0
+```
+![rc-local-configs](https://user-images.githubusercontent.com/103438311/209579929-5edf2e54-10f7-413e-872b-9659c16b555d.png)
+
+#### 1.8) Converte-se o arquivo rc.local em executável
+```
+$ sudo chmod 755 /etc/rc.local
+```
+![execution_permission](https://user-images.githubusercontent.com/103438311/209580017-51a5143b-0b2d-4e27-9bec-ee71290c3d9c.png)
+
+#### 1.9) Reinicie a máquina para aplicação do script
+```
+$ sudo reboot
+```
+![reboot](https://user-images.githubusercontent.com/103438311/209580158-06ecc655-07ea-4f43-8d9a-130277a8464e.png)
 
 
 
