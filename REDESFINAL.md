@@ -127,6 +127,24 @@ $ sudo reboot
 ```
 ![reboot](https://user-images.githubusercontent.com/103438311/209580158-06ecc655-07ea-4f43-8d9a-130277a8464e.png)
 
+#### 1.9.1) Deixando a máquina samba atrás da máquina gw.
+Coloca-se o gateway da interface ens192 da máquina GW no gateway4 da máquina samba
+```
+$ sudo nano /etc/netplan/00-installer-config.yaml
+$ sudo netplan apply
+$ cat /etc/netplan/00-installer-config.yaml
+```
+Em seguida, verifica-se se funcionou observando a tabela de rotas.
+```
+$ netstat -rn 
+```
+![samba_behind_VM_gw](https://user-images.githubusercontent.com/103438311/209580619-6e0de7da-6334-455e-9429-59cd87340e6a.png)
+
+#### 1.9.2) Fazendo o redirecionamento dos pacotes da rede externa para interna, mediante as portas 445, 139 e 53 do sistema
+Para isso, é necessário retornar ao arquivo /etc/rc.local e adicionar o seguinte script:
+```
+<script>
+```
 
 
 ### **2) Instalação e configuração do Samba**
