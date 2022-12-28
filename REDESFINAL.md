@@ -156,13 +156,21 @@ iptables -A FORWARD -p tcp -d 192.168.13.12 --dport 139 -j ACCEPT
 iptables -A PREROUTING -t nat -i ens160 -p udp --dport 53 -j DNAT --to 192.168.13.11:53
 iptables -A FORWARD -p udp -d 10.9.13.121 --dport 53 -j ACCEP
 ```
-* Testando a conexão com o comando telnet no servidor Samba, temos: 
+* Testando a conexão com o comando telnet no servidor Samba, na porta 445, temos: 
 ```
 telnet 10.9.13.119 445
 ```
 ![smb_service_avaliable_externaly](https://user-images.githubusercontent.com/103438311/209807323-f9de238b-8e0d-4425-b790-5658ee04e574.png)
 
-* Testando a conexão com o comando telnet no servidor DNS Master, temos:
+
+* Testando a conexão com o comando telnet no servidor Samba, na porta 139, temos: 
+```
+telnet 10.9.13.119 139
+```
+![sambaaa](https://user-images.githubusercontent.com/103438311/209807887-823f09cf-34b1-4f91-b36e-9370d89487bd.png)
+
+
+* Testando a conexão com o comando telnet no servidor DNS Master, na porta 53, temos:
 ```
 telnet 10.9.13.121 53
 ```
