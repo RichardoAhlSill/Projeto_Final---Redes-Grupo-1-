@@ -158,33 +158,33 @@ iptables -A FORWARD -p udp -d 192.168.13.11 --dport 53 -j ACCEP
 ```
 * Testando a conexão com o comando telnet no servidor Gateway, na porta 445, temos: 
 ```
-telnet 10.9.13.107 445
+$ telnet 10.9.13.107 445
 ```
 ![telnet](https://user-images.githubusercontent.com/103438311/209857178-4dc7ae9a-7594-4e09-b473-350a1c33be5e.png)
 
 * Testando a conexão com o comando telnet no servidor Gateway, na porta 139, temos: 
 ```
-telnet 10.9.13.107 139
+$ telnet 10.9.13.107 139
 ```
 ![telnet139](https://user-images.githubusercontent.com/103438311/209857527-3da8b42b-d925-49e7-9dfd-56d7c546b76b.png)
 
 * Testando a conexão com o comando telnet no servidor Samba, na porta 445, temos: 
 ```
-telnet 10.9.13.119 445
+$ telnet 10.9.13.119 445
 ```
 ![smb_service_avaliable_externaly](https://user-images.githubusercontent.com/103438311/209807323-f9de238b-8e0d-4425-b790-5658ee04e574.png)
 
 
 * Testando a conexão com o comando telnet no servidor Samba, na porta 139, temos: 
 ```
-telnet 10.9.13.119 139
+$ telnet 10.9.13.119 139
 ```
 ![sambaaa](https://user-images.githubusercontent.com/103438311/209807887-823f09cf-34b1-4f91-b36e-9370d89487bd.png)
 
 
 * Testando a conexão com o comando telnet no servidor DNS Master, na porta 53, temos:
 ```
-telnet 10.9.13.121 53
+$ telnet 10.9.13.121 53
 ```
 ![dns_master_avaliable_externally](https://user-images.githubusercontent.com/103438311/209807471-4995ae23-7a60-485d-8083-33f43bf42125.png)
 
