@@ -140,11 +140,34 @@ $ netstat -rn
 ```
 ![samba_behind_VM_gw](https://user-images.githubusercontent.com/103438311/209580619-6e0de7da-6334-455e-9429-59cd87340e6a.png)
 
-#### 1.9.2) Fazendo o redirecionamento dos pacotes da rede externa para interna, mediante as portas 445, 139 e 53 do sistema
+#### 1.9.2) Fazendo o redirecionamento dos pacotes da rede externa para interna, mediante as portas 445, 139 e 53 do sistema, para deixar os serviços Samba e DNS Master disponíveis externamente
+
 Para isso, é necessário retornar ao arquivo /etc/rc.local e adicionar o seguinte script:
 ```
-<script>
+#Recebe pacotes na porta 445 da interface externa do gw e encaminha para o servidor interno
+iptables -A PREROUTING -t nat -i ens160 -p tcp --dport 445 -j DNAT --to 192.168.13.9:445
+iptables -A FORWARD -p tcp -d 192.168.13.12 --dport 445 -j ACCEPT
+
+#Recebe pacotes na porta 139 da interface externa do gw e encaminha para o servidor interno
+iptables -A PREROUTING -t nat -i ens160 -p tcp --dport 139 -j DNAT --to 192.168.13.9:139
+iptables -A FORWARD -p tcp -d 192.168.13.12 --dport 139 -j ACCEPT
+
+#Recebe pacotes na porta 53 da interface externa do gw e encaminha para o servidor DNS Master
+iptables -A PREROUTING -t nat -i ens160 -p udp --dport 53 -j DNAT --to 192.168.13.11:53
+iptables -A FORWARD -p udp -d 10.9.13.121 --dport 53 -j ACCEP
 ```
+* Testando a conexão com o comando telnet no servidor Samba, temos: 
+```
+telnet 10.9.13.119 445
+```
+![smb_service_avaliable_externaly](https://user-images.githubusercontent.com/103438311/209807323-f9de238b-8e0d-4425-b790-5658ee04e574.png)
+
+* Testando a conexão com o comando telnet no servidor DNS Master, temos:
+```
+telnet 10.9.13.121 53
+```
+![dns_master_avaliable_externally](https://user-images.githubusercontent.com/103438311/209807471-4995ae23-7a60-485d-8083-33f43bf42125.png)
+
 
 
 ### **2) Instalação e configuração do Samba**
