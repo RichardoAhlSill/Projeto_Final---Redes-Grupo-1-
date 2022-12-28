@@ -140,22 +140,29 @@ $ netstat -rn
 ```
 ![samba_behind_VM_gw](https://user-images.githubusercontent.com/103438311/209580619-6e0de7da-6334-455e-9429-59cd87340e6a.png)
 
-#### 1.9.2) Fazendo o redirecionamento dos pacotes da rede externa para interna, mediante as portas 445, 139 e 53 do sistema, para deixar os serviços Samba e DNS Master disponíveis externamente
+#### 1.9.2) Fazendo o redirecionamento dos pacotes da rede externa para interna, mediante as portas 445, 139 e 53 do sistema, para deixar os serviços Gaeway, Samba e DNS Master disponíveis externamente
 
 Para isso, é necessário retornar ao arquivo /etc/rc.local e adicionar o seguinte script:
 ```
 #Recebe pacotes na porta 445 da interface externa do gw e encaminha para o servidor interno
-iptables -A PREROUTING -t nat -i ens160 -p tcp --dport 445 -j DNAT --to 192.168.13.9:445
-iptables -A FORWARD -p tcp -d 192.168.13.12 --dport 445 -j ACCEPT
+iptables -A PREROUTING -t nat -i ens160 -p tcp --dport 445 -j DNAT --to 192.168.13.10:445
+iptables -A FORWARD -p tcp -d 192.168.13.10 --dport 445 -j ACCEPT
 
 #Recebe pacotes na porta 139 da interface externa do gw e encaminha para o servidor interno
-iptables -A PREROUTING -t nat -i ens160 -p tcp --dport 139 -j DNAT --to 192.168.13.9:139
-iptables -A FORWARD -p tcp -d 192.168.13.12 --dport 139 -j ACCEPT
+iptables -A PREROUTING -t nat -i ens160 -p tcp --dport 139 -j DNAT --to 192.168.13.10:139
+iptables -A FORWARD -p tcp -d 192.168.13.10 --dport 139 -j ACCEPT
 
 #Recebe pacotes na porta 53 da interface externa do gw e encaminha para o servidor DNS Master
 iptables -A PREROUTING -t nat -i ens160 -p udp --dport 53 -j DNAT --to 192.168.13.11:53
-iptables -A FORWARD -p udp -d 10.9.13.121 --dport 53 -j ACCEP
+iptables -A FORWARD -p udp -d 192.168.13.11 --dport 53 -j ACCEP
 ```
+* Testando a conexão com o comando telnet no servidor Gateway, na porta 445, temos: 
+```
+telnet 10.9.13.107 445
+```
+![telnet](https://user-images.githubusercontent.com/103438311/209857178-4dc7ae9a-7594-4e09-b473-350a1c33be5e.png)
+
+
 * Testando a conexão com o comando telnet no servidor Samba, na porta 445, temos: 
 ```
 telnet 10.9.13.119 445
