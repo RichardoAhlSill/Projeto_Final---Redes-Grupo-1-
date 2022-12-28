@@ -162,6 +162,11 @@ telnet 10.9.13.107 445
 ```
 ![telnet](https://user-images.githubusercontent.com/103438311/209857178-4dc7ae9a-7594-4e09-b473-350a1c33be5e.png)
 
+* Testando a conexão com o comando telnet no servidor Gateway, na porta 139, temos: 
+```
+telnet 10.9.13.107 139
+```
+![telnet139](https://user-images.githubusercontent.com/103438311/209857527-3da8b42b-d925-49e7-9dfd-56d7c546b76b.png)
 
 * Testando a conexão com o comando telnet no servidor Samba, na porta 445, temos: 
 ```
