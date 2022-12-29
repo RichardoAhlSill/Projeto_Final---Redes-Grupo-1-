@@ -1,8 +1,8 @@
-### **3) Instalação e configuração do NS1 (DNS MASTER)**
+# **3) Instalação e configuração do NS1 (DNS MASTER)**
 
 O Bind9 ou Berkeley Internet Name Domain é um servidor utilizado para o protocólo DNS, na qual tem a serventia de garantir uma maior agilidade na navegação visto que permite que o usuário apenas lembre do hostname de um site ao invés de seu endereço IP, portanto é o Bind9 que irá permitir o uso deste protocolo no Ubuntu.
 
-#### 3.1) Instalando o Bind9
+## 3.1) Instalando o Bind9
 
 ```
 sudo apt-get install bind9 dnsutils bind9-doc 
@@ -11,7 +11,7 @@ sudo apt-get install bind9 dnsutils bind9-doc
 <p><center> Figura X:  Instalando o Bind9.</center></p>   
 <img src="IMAGES/NS1/1.png" alt="Imagens" title="Instalando o Bind9." width="1000" height="auto" />
 
-#### 3.2) Verificando o status do serviço Bind9
+## 3.2) Verificando o status do serviço Bind9
 
 ```
 sudo systemctl status bind9 
@@ -20,7 +20,7 @@ sudo systemctl status bind9
 <p><center> Figura X:  Verificando o status do serviço.</center></p>   
 <img src="IMAGES/NS1/2.png" alt="Imagens" title="Verificando o status do serviço." width="1000" height="auto" />
 
-#### 3.3) Verificando os diretórios do Bind
+## 3.3) Verificando os diretórios do Bind
 
 ```
 ls /etc/bind
@@ -29,7 +29,7 @@ ls /etc/bind
 <p><center> Figura X:  Verificando os diretórios do Bind.</center></p>   
 <img src="IMAGES/NS1/3.png" alt="Imagens" title="Verificando os diretórios do Bind." width="1000" height="auto" />
 
-#### 3.4) Criando um diretório para as "zones"
+## 3.4) Criando um diretório para as "zones"
 
 Criando um diretório para armazenar os arquivos das zonas.
 
@@ -40,7 +40,7 @@ sudo mkdir /etc/bind/zones
 <p><center> Figura X:  Criando um diretório para zonas.</center></p>   
 <img src="IMAGES/NS1/4.png" alt="Imagens" title="Criando um diretório para zonas." width="1000" height="auto" />
 
-#### 3.5) Copiando Banco de Dados para o nosso domínio (Zona Direta) 
+## 3.5) Copiando Banco de Dados para o nosso domínio (Zona Direta) 
 
 Fazendo uma cópia do arquivo db.empty para o db.grupo1.turma913.ifalara.local, isso na Zona Direta
 
@@ -51,7 +51,7 @@ sudo cp /etc/bind/db.empty /etc/bind/zones/db.grupo1.turma913.ifalara.local
 <p><center> Figura X:  Copiando Banco de Dados (Zona Direta).</center></p>   
 <img src="IMAGES/NS1/5.png" alt="Imagens" title="Copiando Banco de Dados (Zona Direta)" width="1000" height="auto" />
 
-#### 3.6) Copiando Banco de Dados para o nosso domínio (Zona Reversa)
+## 3.6) Copiando Banco de Dados para o nosso domínio (Zona Reversa)
 
 Utilizado para quando não se conhece o endereço IP, mas sabe-se o nome do host.
 Para isso, faz-se uma cópia do arquivo db.127 para o db.10.9.13.rev, isso na Zona Reversa.
@@ -63,7 +63,7 @@ sudo cp /etc/bind/db.127 /etc/bind/zones/db.10.9.13.rev
 <p><center> Figura X:  Copiando Banco de Dados (Zona Reversa).</center></p>   
 <img src="IMAGES/NS1/6.png" alt="Imagens" title="Copiando Banco de Dados (Zona Reversa)." width="1000" height="auto" />
 
-#### 3.7) Editando o Banco de Dados para o nosso domínio (Zona Direta)
+## 3.7) Editando o Banco de Dados para o nosso domínio (Zona Direta)
 
 ```
 sudo nano db.grupo1.turma913.ifalara.local 
@@ -99,7 +99,7 @@ db.grupo1.turma913.ifalara.local.	  IN 	A	10.9.13.212
 <p><center> Figura X:  Editando Banco de Dados (Zona Direta).</center></p>   
 <img src="IMAGES/NS1/7.png" alt="Imagens" title="Editando Banco de Dados (Zona Direta)." width="1000" height="auto" />
 
-#### 3.8) Editando o Banco de Dados para o nosso domínio (Zona Reversa)
+## 3.8) Editando o Banco de Dados para o nosso domínio (Zona Reversa)
 
 ```
 sudo nano db.10.9.13.rev 
@@ -136,7 +136,7 @@ $TTL    604800
 <p><center> Figura X:  Editando Banco de Dados (Zona Reversa).</center></p>   
 <img src="IMAGES/NS1/8.png" alt="Imagens" title="Editando Banco de Dados (Zona Reversa)." width="1000" height="auto" />
 
-#### 3.9) Ativando os arquivos das zonas
+## 3.9) Ativando os arquivos das zonas
 
 ```
 sudo nano /etc/bind/named.conf.local
@@ -171,7 +171,7 @@ zone "13.9.10.in-addr.arpa" IN {
 <p><center> Figura X:  Ativando os arquivos das zonas.</center></p>   
 <img src="IMAGES/NS1/9.png" alt="Imagens" title="Ativando os arquivos das zonas." width="1000" height="auto" />
 
-#### 3.10) Checando a sintaxe do arquivo de ativação
+## 3.10) Checando a sintaxe do arquivo de ativação
 
 ```
 sudo named-checkconf
@@ -218,7 +218,7 @@ OK
 <p><center> Figura X:  Checando a sintaxe dos arquivo de dados 2. </center></p>   
 <img src="IMAGES/NS1/12.png" alt="Imagens" title="Checando a sintaxe dos arquivo de dados 2." width="1000" height="auto" />
 
-#### 3.12) Configuração para resolver apenas endereço IPv4
+## 3.12) Configuração para resolver apenas endereço IPv4
 
 ```
 sudo nano /etc/default/named
@@ -246,7 +246,7 @@ E ```sudo systemctl enable bind9``` caso seja necessáro.
 <p><center> Figura X:  Restartando ou Iniciando o Bind9.</center></p>   
 <img src="IMAGES/NS1/14.png" alt="Imagens" title="Restartando ou Iniciando o Bind9" width="1000" height="auto" />
 
-#### 3.14) Configuração para os clientes
+## 3.14) Configuração para os clientes
 
 Para isso, deve-se editar o arquivo:
 
@@ -287,7 +287,7 @@ network:
 <p><center> Figura X:  Configuração para os clientes.</center></p>   
 <img src="IMAGES/NS1/15.png" alt="Imagens" title="Configuração para os clientes." width="1000" height="auto" />
 
-#### 3.15) Testes do Servidor
+## 3.15) Testes do Servidor
 
 Primeiro iremos testar se os campos DNS servers e DNS Domain estão corretos, ou seja, se estão de acordo com a configuração do cliente que acabamos de editar.
 Para isso, basta utilizar o comando:
