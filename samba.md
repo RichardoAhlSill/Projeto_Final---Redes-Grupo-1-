@@ -1,7 +1,7 @@
-### **2) Instalação e configuração do Samba**
+# **2) Instalação e configuração do Samba**
 
 
-#### 2.1) Alterando nome da VM
+## 2.1) Alterando nome da VM
 
 ```
 $ sudo hostnamectl set-hostname samba-srv
@@ -11,14 +11,14 @@ $ reboot
 
 Nome da VM Samba alterado para samba-srv.
 
-#### 2.2) Instalando o servidor Samba na VM samba-srv
+## 2.2) Instalando o servidor Samba na VM samba-srv
 
 ```
 $ sudo apt update
 $ sudo apt install samba
 ```
 
-#### 2.2) Verificar se o Samba está rodando
+## 2.2) Verificar se o Samba está rodando
 
 ```
 $ whereis samba
@@ -29,7 +29,7 @@ $ netstat -an | grep LISTEN
 <img src="IMAGES-SAMBA/systemctl_status.png" alt="Imagens" title="Figura 2.2:  Verificar se a VM está rodando." width="1000" height="auto" />
 <img src="IMAGES-SAMBA/netstat.png" alt="Imagens" title="Figura 2.3:  Verificar se a VM está rodando." width="700" height="auto" />
 
-#### 2.3) Backup do arquivo de configuração do Samba e criação de um novo arquivos com os comandos necessários.
+## 2.3) Backup do arquivo de configuração do Samba e criação de um novo arquivos com os comandos necessários.
 
 ```
 $ sudo cp /etc/samba/smb.conf{,.backup}
@@ -42,7 +42,7 @@ $ sudo nano /etc/samba/smb.conf
 
 falta imagens.
 
-#### 2.4) Editando o arquivo de configuração /etc/samba/smb.conf
+## 2.4) Editando o arquivo de configuração /etc/samba/smb.conf
 
 ```
 $ sudo nano /etc/samba/smb.conf
@@ -94,7 +94,7 @@ sudo chgrp sambashare /samba/public
 
 <img src="IMAGES-SAMBA/samba_permissions.png" alt="Imagens" title="Figura 2.6:  configurando permissões." width="700" height="auto" />
 
-#### 2.5) Cliente de compartilhamento
+## 2.5) Cliente de compartilhamento
 
 * Para o último passo basta em uma máquina digite no Winndows Explorer o endereço IP do servidor samba da seguinte forma:
 **\\ip_do_maquina**. Exemplo: \\10.9.13.119
