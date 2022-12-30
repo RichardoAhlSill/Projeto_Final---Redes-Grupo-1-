@@ -40,7 +40,6 @@ $ sudo nano /etc/samba/smb.conf
 
 <img src="IMAGES-SAMBA/samba_config_part2.png" alt="Imagens" title="Figura 2.5:  Configuração Samba." width="700" height="auto" />
 
-falta imagens.
 
 ## 2.4) Editando o arquivo de configuração /etc/samba/smb.conf
 
