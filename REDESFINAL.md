@@ -397,7 +397,7 @@ db.grupo1.turma913.ifalara.local.	  IN 	A	10.9.13.212
 ```
 
 <p><center> Figura X:  Editando Banco de Dados (Zona Direta).</center></p>   
-<img src="IMAGES/NS1/image.png" alt="Imagens" title="Editando Banco de Dados (Zona Direta)." width="1000" height="auto" />
+<img src="IMAGES/NS1/imagem.png" alt="Imagens" title="Editando Banco de Dados (Zona Direta)." width="1000" height="auto" />
 
 #### 3.8) Editando o Banco de Dados para o nosso domínio (Zona Reversa)
 
