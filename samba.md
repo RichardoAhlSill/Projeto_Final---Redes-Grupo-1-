@@ -37,8 +37,8 @@ $ ls -la
 $ sudo bash -c 'grep -v -E "^#|^;" /etc/samba/smb.conf.backup | grep . > /etc/samba/smb.conf'
 $ sudo nano /etc/samba/smb.conf
 ```
+![samba](https://user-images.githubusercontent.com/103438311/210081544-477c9fcf-29e7-4e79-8a86-a2e2895f6040.png)
 
-<img src="IMAGES-SAMBA/samba_config_part2.png" alt="Imagens" title="Figura 2.5:  Configuração Samba." width="700" height="auto" />
 
 
 ## 2.4) Editando o arquivo de configuração /etc/samba/smb.conf
@@ -49,9 +49,9 @@ $ sudo systemctl restart smbd
 $ sudo systemctl restart smbd
 $ cat /etc/samba/smb.conf
 ```
-Linha de interfaces alterada para "10.9.13.1/24 ens160 ens192 enp0s3"
+Linha de interfaces alterada para "10.9.13.1/24 ens160 ens192"
+![interfaces](https://user-images.githubusercontent.com/103438311/210081380-92a71d43-c65e-44f9-b742-5985734bacf4.png)
 
-<img src="IMAGES-SAMBA/samba_config_part1.png" alt="Imagens" title="Figura 2.4:  Configuração Samba." width="700" height="auto" />
 
 * Logo em seguida deve-se criar um usuário do S.O para utilizar o compartilhamento Samba.
 
