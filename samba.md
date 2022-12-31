@@ -49,7 +49,7 @@ $ sudo systemctl restart smbd
 $ sudo systemctl restart smbd
 $ cat /etc/samba/smb.conf
 ```
-Linha de interfaces alterada para "10.9.13.1/24 ens160 ens192"
+Linha de interfaces alterada para "127.0.0.1/24 ens160 ens192"
 ![interfaces](https://user-images.githubusercontent.com/103438311/210081380-92a71d43-c65e-44f9-b742-5985734bacf4.png)
 
 
