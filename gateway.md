@@ -136,15 +136,15 @@ $ netstat -rn
 
 Para isso, é necessário retornar ao arquivo /etc/rc.local e adicionar o seguinte script:
 ```
-#Recebe pacotes na porta 445 da interface externa do gw e encaminha para o servidor intern>
+#Recebe pacotes na porta 445 da interface externa do gw e encaminha para o servidor interno
 iptables -A PREROUTING -t nat -i ens160 -p tcp --dport 445 -j DNAT --to 192.168.13.10:445
 iptables -A FORWARD -p tcp -d 192.168.13.10 --dport 445 -j ACCEPT
 
-#Recebe pacotes na porta 139 da interface externa do gw e encaminha para o servidor intern>
+#Recebe pacotes na porta 139 da interface externa do gw e encaminha para o servidor interno
 iptables -A PREROUTING -t nat -i ens160 -p tcp --dport 139 -j DNAT --to 192.168.13.10:139
 iptables -A FORWARD -p tcp -d 192.168.13.10 --dport 139 -j ACCEPT
 
-#Recebe pacotes na porta 53 da interface externa do gw e encaminha para o servidor DNS Mas>
+#Recebe pacotes na porta 53 da interface externa do gw e encaminha para o servidor DNS Master
 iptables -A PREROUTING -t nat -i ens160 -p udp --dport 53 -j DNAT --to 192.168.13.11:53
 iptables -A FORWARD -p udp -d 192.168.13.11 --dport 53 -j ACCEPT
 ```
