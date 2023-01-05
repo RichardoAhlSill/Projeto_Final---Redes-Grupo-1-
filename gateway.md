@@ -181,3 +181,9 @@ $ telnet 10.9.13.121 53
 ![dns_master_avaliable_externally](https://user-images.githubusercontent.com/103438311/209807471-4995ae23-7a60-485d-8083-33f43bf42125.png)
 
 
+## 1.9.3) Acessando o servidor Samba, através do IP do servidor Gateway no host
+
+[Gravação de tela de 05-01-2023 12:58:08.webm](https://user-images.githubusercontent.com/103438311/210824669-a8bf69ab-e815-464d-b92e-8ee677159ed5.webm)
+
+
+
