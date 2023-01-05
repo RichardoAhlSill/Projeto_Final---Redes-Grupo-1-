@@ -183,7 +183,6 @@ $ telnet 10.9.13.121 53
 
 ## 1.9.3) Acessando o servidor Samba, através do IP do servidor Gateway no host
 
-[Gravação de tela de 05-01-2023 12:58:08.webm](https://user-images.githubusercontent.com/103438311/210824669-a8bf69ab-e815-464d-b92e-8ee677159ed5.webm)
-
+[gateway_samba.webm](https://user-images.githubusercontent.com/103438311/210828165-64130029-ac13-416f-8b83-cceeccf2bd89.webm)
 
 
